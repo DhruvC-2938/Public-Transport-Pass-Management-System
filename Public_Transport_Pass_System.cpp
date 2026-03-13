@@ -45,33 +45,33 @@ public:
 
         switch (choice)
         {
-        case 1:
-            passPlan = "Monthly";
-            validityDays = 30;
-            price = 500;
-            break;
+            case 1:
+                passPlan = "Monthly";
+                validityDays = 30;
+                price = 500;
+                break;
 
-        case 2:
-            passPlan = "Quarterly";
-            validityDays = 90;
-            price = 1400;
-            break;
+            case 2:
+                passPlan = "Quarterly";
+                validityDays = 90;
+                price = 1400;
+                break;
 
-        case 3:
-            passPlan = "Half-Yearly";
-            validityDays = 180;
-            price = 2700;
-            break;
+            case 3:
+                passPlan = "Half-Yearly";
+                validityDays = 180;
+                price = 2700;
+                break;
 
-        case 4:
-            passPlan = "Yearly";
-            validityDays = 365;
-            price = 5000;
-            break;
+            case 4:
+                passPlan = "Yearly";
+                validityDays = 365;
+                price = 5000;
+                break;
 
-        default:
-            cout << "Invalid plan\n";
-            return false;
+            default:
+                cout << "Invalid plan\n";
+                return false;
         }
 
         if (passType == "Student")
@@ -135,29 +135,29 @@ public:
 
         switch (choice)
         {
-        case 1:
-            validityDays += 30;
-            renewalPrice = 500;
-            break;
+            case 1:
+                validityDays += 30;
+                renewalPrice = 500;
+                break;
 
-        case 2:
-            validityDays += 90;
-            renewalPrice = 1400;
-            break;
+            case 2:
+                validityDays += 90;
+                renewalPrice = 1400;
+                break;
 
-        case 3:
-            validityDays += 180;
-            renewalPrice = 2700;
-            break;
+            case 3:
+                validityDays += 180;
+                renewalPrice = 2700;
+                break;
 
-        case 4:
-            validityDays += 365;
-            renewalPrice = 5000;
-            break;
+            case 4:
+                validityDays += 365;
+                renewalPrice = 5000;
+                break;
 
-        default:
-            cout << "Invalid option\n";
-            return;
+            default:
+                cout << "Invalid option\n";
+                return;
         }
 
         if (passType == "Student")
@@ -195,96 +195,96 @@ int main()
 
         switch (choice)
         {
-        case 1:
-            if (passes[count].applyForPass())
-            {
-                count++;
-            }
-            break;
+            case 1:
+                if (passes[count].applyForPass())
+                {
+                    count++;
+                }
+                break;
 
-        case 2:
-        {
-            if (count == 0)
+            case 2:
             {
-                cout << "No passes available\n";
+                if (count == 0)
+                {
+                    cout << "No passes available\n";
+                    break;
+                }
+
+                cout << "\nAvailable Pass IDs:\n";
+
+                for (int i = 0; i < count; i++)
+                {
+                    cout << passes[i].getPassID() << endl;
+                }
+
+                int id;
+                bool found = false;
+
+                cout << "Enter Pass ID: ";
+                cin >> id;
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (passes[i].getPassID() == id)
+                    {
+                        passes[i].displayPassDetails();
+                        passes[i].checkValidity();
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    cout << "Pass not found\n";
+
                 break;
             }
 
-            cout << "\nAvailable Pass IDs:\n";
-
-            for (int i = 0; i < count; i++)
+            case 3:
             {
-                cout << passes[i].getPassID() << endl;
-            }
-
-            int id;
-            bool found = false;
-
-            cout << "Enter Pass ID: ";
-            cin >> id;
-
-            for (int i = 0; i < count; i++)
-            {
-                if (passes[i].getPassID() == id)
+                if (count == 0)
                 {
-                    passes[i].displayPassDetails();
-                    passes[i].checkValidity();
-                    found = true;
+                    cout << "No passes available\n";
                     break;
                 }
-            }
 
-            if (!found)
-                cout << "Pass not found\n";
+                cout << "\nAvailable Pass IDs:\n";
 
-            break;
-        }
+                for (int i = 0; i < count; i++)
+                {
+                    cout << passes[i].getPassID() << endl;
+                }
 
-        case 3:
-        {
-            if (count == 0)
-            {
-                cout << "No passes available\n";
+                int id;
+                bool found = false;
+
+                cout << "Enter Pass ID to renew: ";
+                cin >> id;
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (passes[i].getPassID() == id)
+                    {
+                        passes[i].renewPass();
+                        passes[i].displayPassDetails();
+                        passes[i].checkValidity();
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    cout << "Pass not found\n";
+
                 break;
             }
 
-            cout << "\nAvailable Pass IDs:\n";
+            case 4:
+                cout << "Exiting system...\n";
+                break;
 
-            for (int i = 0; i < count; i++)
-            {
-                cout << passes[i].getPassID() << endl;
-            }
-
-            int id;
-            bool found = false;
-
-            cout << "Enter Pass ID to renew: ";
-            cin >> id;
-
-            for (int i = 0; i < count; i++)
-            {
-                if (passes[i].getPassID() == id)
-                {
-                    passes[i].renewPass();
-                    passes[i].displayPassDetails();
-                    passes[i].checkValidity();
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-                cout << "Pass not found\n";
-
-            break;
-        }
-
-        case 4:
-            cout << "Exiting system...\n";
-            break;
-
-        default:
-            cout << "Invalid choice\n";
+            default:
+                cout << "Invalid choice\n";
         }
 
     } while (choice != 4);
